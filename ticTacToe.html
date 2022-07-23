@@ -1,0 +1,53 @@
+<head>
+    <link rel="stylesheet" type="text/css" href="./pageStyles.css" />
+</head>
+<body>
+    <h1>Tic-Tac-Toe</h1>
+    <div class="board">
+        <div class="boardRow">
+            <div class="boardCell">
+                <div class="gameButton" onclick="addThisSpace(this)" id="1,1">1,1</div>
+            </div>
+            <div class="boardCell">
+                <div class="gameButton" onclick="addThisSpace(this)" id="1,2">1,2</div>
+            </div>
+            <div class="boardCell">
+                <div class="gameButton" onclick="addThisSpace(this)" id="1,3">1,3</div>
+            </div>
+          </div>
+          <div class="boardRow">
+            <div class="boardCell">
+                <div class="gameButton" onclick="addThisSpace(this)" id="2,1">2,1</div>
+            </div>
+            <div class="boardCell">
+                <div class="gameButton" onclick="addThisSpace(this)" id="2,2">2,2</div>
+            </div>
+            <div class="boardCell">
+                <div class="gameButton" onclick="addThisSpace(this)" id="2,3">2,3</div>
+            </div>
+          </div>
+          <div class="boardRow">
+            <div class="boardCell">
+                <div class="gameButton" onclick="addThisSpace(this)" id="3,1">3,1</div>
+            </div>
+            <div class="boardCell">
+                <div class="gameButton" onclick="addThisSpace(this)" id="3,2">3,2</div>
+            </div>
+            <div class="boardCell">
+                <div class="gameButton" onclick="addThisSpace(this)" id="3,3">3,3</div>
+            </div>
+          </div>
+    </table>
+</body>
+<script type="text/javascript" src="./gameLogic.js"></script>
+<script>
+    const addThisSpace = (elemnt) => {
+        if (!elemnt.classList.contains('played')) {
+            elemnt.classList.add("played");
+            elemnt.classList.add(ticTacToe.currentPlayer.name);
+            rowColArr = elemnt.id.split(',')
+
+            ticTacToe.makePlay(rowColArr[0], rowColArr[1]);
+        }
+    }
+</script>
