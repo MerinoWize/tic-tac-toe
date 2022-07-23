@@ -27,8 +27,6 @@ class Player {
 
     addSpace (row, col) {
         this.spaces.push(new Space(row, col));
-        console.log(`${this.name} ADDED SPACE ${row},${col}`);
-        console.log(`${this.name}  SPACES`, this.spaces);
     }
 
     calculateWin () {
@@ -74,11 +72,6 @@ class Player {
 
             });
 
-            console.log(`${this.name} rows`, rows);
-            console.log(`${this.name} columns`, columns);
-            console.log(`${this.name} diagLtoR`, diagLtoR);
-            console.log(`${this.diagRtoL} diagLtoR`, diagRtoL);
-
             if (
                 Object.values(rows).includes(3) ||
                 Object.values(columns).includes(3) ||
@@ -98,6 +91,8 @@ class Game {
         this.currentPlayer = this.Player1;
         this.gameEnd = false;
         this.winner = null;
+
+        this.totalPlays = 0;
     }
 
     switchPlayer () {
@@ -108,6 +103,7 @@ class Game {
     }
 
     makePlay (row, col) {
+        this.totalPlays ++;
         this.currentPlayer.addSpace(row, col);
         this.currentPlayer.calculateWin();
 
@@ -117,7 +113,11 @@ class Game {
 
             console.log(`GAME ENDED!!!! congratulations ${this.winner.name}`);
         } else {
-            this.switchPlayer();
+            if (this.totalPlays < 9) {
+                this.switchPlayer();
+            } else {
+                this.gameEnd = true;
+            }
         }
     }
 
@@ -129,7 +129,7 @@ class Game {
     }
 }
 
-const bluePlayer = new Player('blue');
-const redPlayer = new Player('red');
+const bluePlayer = new Player('Blue');
+const redPlayer = new Player('Red');
 
 const ticTacToe = new Game(bluePlayer, redPlayer);
